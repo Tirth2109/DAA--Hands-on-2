@@ -2,6 +2,7 @@ import random
 import time
 import matplotlib.pyplot as plt
 
+# Sorting algorithms
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         key = arr[i]
@@ -43,19 +44,25 @@ def benchmark_sorting_algorithms(array_sizes):
         arr_copy = arr[:]
         start_time = time.time()
         insertion_sort(arr_copy)
-        insertion_sort_times.append(time.time() - start_time)
+        elapsed_time = time.time() - start_time
+        insertion_sort_times.append(elapsed_time)
+        print(f"Insertion Sort - Array Size: {size}, Time: {elapsed_time:.6f} seconds")
         
         # Selection Sort
         arr_copy = arr[:]
         start_time = time.time()
         selection_sort(arr_copy)
-        selection_sort_times.append(time.time() - start_time)
+        elapsed_time = time.time() - start_time
+        selection_sort_times.append(elapsed_time)
+        print(f"Selection Sort - Array Size: {size}, Time: {elapsed_time:.6f} seconds")
         
         # Bubble Sort
         arr_copy = arr[:]
         start_time = time.time()
         bubble_sort(arr_copy)
-        bubble_sort_times.append(time.time() - start_time)
+        elapsed_time = time.time() - start_time
+        bubble_sort_times.append(elapsed_time)
+        print(f"Bubble Sort - Array Size: {size}, Time: {elapsed_time:.6f} seconds")
     
     return insertion_sort_times, selection_sort_times, bubble_sort_times
 
@@ -73,10 +80,14 @@ def plot_benchmark_results(array_sizes, insertion_sort_times, selection_sort_tim
     plt.grid(True)
     plt.show()
 
+# Main program
 if __name__ == "__main__":
+    # User inputs
     input_sizes = input("Enter the input sizes separated by commas (e.g., 5,10,20,50): ")
     array_sizes = list(map(int, input_sizes.split(',')))
     
+    # Benchmark sorting algorithms
     insertion_sort_times, selection_sort_times, bubble_sort_times = benchmark_sorting_algorithms(array_sizes)
     
+    # Plot results
     plot_benchmark_results(array_sizes, insertion_sort_times, selection_sort_times, bubble_sort_times)
